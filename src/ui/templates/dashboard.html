@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Code Analyzer Dashboard</title>
+</head>
+<body>
+  <h1>Welcome to the Code Analyzer!</h1>
+  <div>
+    <form id="analysisForm">
+      <label>Project Path:</label>
+      <input type="text" name="project_path" placeholder="/path/to/project">
+      <button type="submit">Analyze</button>
+    </form>
+  </div>
+  <div id="analysisResults"></div>
+
+  <hr>
+
+  <h2>Chat with ChatGPT-01</h2>
+  <div>
+    <textarea id="chatInput" rows="3" cols="50"></textarea><br>
+    <button id="chatButton">Send</button>
+  </div>
+  <div id="chatResponse"></div>
+
+  <script>
+    // Simple JS to handle form submission & chat
+    document.getElementById('analysisForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      let formData = new FormData(e.target);
+      let project_path = formData.get('project_path');
+      
+      let response = await fetch("/analyze", {
+        method: "POST",
+        body: formData
+      });
+      let data = await response.json();
+      document.getElementById("analysisResults").innerText = JSON.stringify(data, null, 2);
+    });
+
+    document.getElementById('chatButton').addEventListener('click', async () => {
+      let message = document.getElementById('chatInput').value;
+      let response = await fetch("/chat", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({message})
+      });
+      let data = await response.json();
+      document.getElementById('chatResponse').innerText = data.response;
+    });
+  </script>
+</body>
+</html>

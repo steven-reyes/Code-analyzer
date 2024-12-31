@@ -1,0 +1,19 @@
+# .flake8
+
+[flake8]
+# Maximum allowed line length
+max-line-length = 88
+
+# Exclude certain directories (e.g., build, node_modules, migrations, etc.)
+exclude =
+    .git,
+    __pycache__,
+    build,
+    dist,
+    node_modules,
+    venv,
+    .venv
+
+# Ignore certain warnings or errors if needed
+# e.g., E501 (line length), E302 (expected 2 blank lines)
+# ignore = E501, E302

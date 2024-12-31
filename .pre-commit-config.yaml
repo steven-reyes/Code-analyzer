@@ -1,0 +1,37 @@
+# .pre-commit-config.yaml
+
+repos:
+  - repo: https://github.com/psf/black
+    rev: 23.7.0
+    hooks:
+      - id: black
+        language_version: python3.9
+        additional_dependencies: []
+        # If you want line-length 88, black by default uses 88
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+        additional_dependencies: []
+        language_version: python3.9
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v2.8.8
+    hooks:
+      - id: prettier
+        files: "\\.(jsx?|tsx?|json|css|scss|md|yaml|yml)$"
+
+  # Example if you want to run ESLint
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v8.44.0
+    hooks:
+      - id: eslint
+        files: "\\.(jsx?|tsx?)$"
+
+  # Example for isort
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        language_version: python3.9

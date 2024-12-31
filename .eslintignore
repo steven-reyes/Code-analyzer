@@ -1,0 +1,17 @@
+# .eslintignore
+
+# Ignore node_modules by default
+node_modules/
+
+# Ignore build outputs
+dist/
+build/
+
+# Ignore coverage
+coverage/
+
+# Possibly ignore Python code if you only lint JS:
+*.py
+
+# If you store compiled or bundled files
+public/

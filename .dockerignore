@@ -1,0 +1,28 @@
+# Ignore Git files
+.git
+.gitignore
+
+# Node modules (often reinstalled in container)
+node_modules
+
+# Python cache / build
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# OS cruft
+.DS_Store
+
+# Virtual environment
+venv/
+.venv/
+
+# Secrets / env
+.env
+
+# Local coverage/tests
+coverage/
+coverage.xml
+.pytest_cache/

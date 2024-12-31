@@ -1,0 +1,34 @@
+# .bak/main.py.bak
+#
+# This file is an older or experimental backup of `src/main.py`.
+# It's placed in the .bak/ folder for safekeeping and should not be used
+# in production unless you intentionally roll back to this version.
+
+import json
+
+# NOTE: This version used a simpler approach for analyzing projects.
+# It did not incorporate ChatGPT-01 integration, nor did it handle
+# advanced scanning logic. Retain this file only if needed for historical
+# reference or rollback.
+
+def main():
+    """
+    Legacy main function (older approach).
+    Loads a minimal config and prints a message.
+    """
+    config = {
+        "appName": "Legacy Code Analyzer",
+        "version": "0.9.0"
+    }
+    print(f"Running {config['appName']} v{config['version']} - Legacy Approach.")
+    
+    # Placeholder logic:
+    project_path = "/path/to/old/project"
+    print(f"Analyzing project at {project_path} with minimal checks...")
+    # (Old scanning logic omitted or replaced in newer versions.)
+
+    # End of older approach
+    print("Legacy analysis complete.")
+
+if __name__ == "__main__":
+    main()

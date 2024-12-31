@@ -1,0 +1,40 @@
+# docker-compose.yml
+
+version: "3.9"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: code_analyzer_web
+    # If your application uses Flask on port 5000
+    ports:
+      - "5000:5000"
+    environment:
+      # You can override or set environment variables here
+      FLASK_ENV: development
+      DB_HOST: db  # Name of the 'db' service
+      # Possibly override secrets, e.g.:
+      # CHATGPT_API_KEY: ${CHATGPT_API_KEY}
+    volumes:
+      - .:/code  # Sync local code into container for easy dev
+    depends_on:
+      - db
+    # If you run a Python/Flask app, the container might run "python src/main.py" by default,
+    # as defined in the Dockerfile CMD.
+
+  db:
+    image: postgres:14
+    container_name: code_analyzer_db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=code_analyzer_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:

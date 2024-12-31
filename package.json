@@ -1,0 +1,24 @@
+{
+  "name": "code-analyzer-front",
+  "version": "1.0.0",
+  "description": "A Node.js project for the Code Analyzer UI or scripts",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "jest",
+    "lint": "eslint .",
+    "build": "webpack --mode production"
+  },
+  "keywords": [],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "eslint": "^8.44.0",
+    "webpack": "^5.88.1",
+    "webpack-cli": "^5.1.4"
+  }
+}
