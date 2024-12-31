@@ -37,4 +37,18 @@ venv/
 # Jupyter notebooks checkpoints
 .ipynb_checkpoints/
 
-# If you have more generated directories/files, add them here
+# Backup files/folders (Optional)
+.bak/
+*.bak
+
+# Output directory (Optional)
+output/
+# or if you only want to ignore subdirs:
+# output/updated_files/
+# output/reports/
+
+# Cypress (Optional, if you're using Cypress E2E tests)
+cypress/screenshots/
+cypress/videos/
+
+# If your build or dev tools generate additional artifact folders, ignore them here.
