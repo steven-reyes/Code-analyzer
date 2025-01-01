@@ -1,20 +1,18 @@
 {
-    // settings.json
-    "appName": "Code Analyzer",
-    "version": "1.0.0",
-    "debugMode": true,
-  
-    "database": {
-      "host": "localhost",
-      "port": 5432,
-      "username": "db_user",
-      "password": "db_pass",
-      "dbname": "code_analyzer"
-    },
-  
-    "logging": {
-      "level": "INFO",
-      "format": "%(asctime)s - %(levelname)s - %(message)s"
-    }
+  "appName": "Code Analyzer",
+  "version": "1.0.0",
+  "debugMode": true,
+
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "username": "db_user",
+    "password": "db_pass",
+    "dbname": "code_analyzer"
+  },
+
+  "logging": {
+    "level": "INFO",
+    "format": "%(asctime)s - %(levelname)s - %(message)s"
   }
-  
+}
