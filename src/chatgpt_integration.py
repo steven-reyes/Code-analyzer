@@ -6,7 +6,7 @@ import requests
 class ChatGPTClient:
     """
     A wrapper for ChatGPT integration.
-    By default, uses the 'o1-mini' model, with an option to switch to 'chatgpt-01'.
+    By default, uses 'o1-mini' as the model.
     This could call the OpenAI API or an on-prem endpoint (depending on your deployment).
     """
 
@@ -33,13 +33,18 @@ class ChatGPTClient:
         if not self.api_key:
             raise ValueError("CHATGPT_API_KEY not set.")
 
+        # Print out the model for debugging
+        print(f"Debug: Using model: {self.model}")
+
+        # Merge context with the user's message (o1-mini doesn't support 'system' role)
+        combined_content = f"{context}\n{message}".strip()
+
+        # 'o1-mini' doesn't support temperature adjustments. We'll omit 'temperature' to use its default (1).
         payload = {
             "model": self.model,
             "messages": [
-                {"role": "system", "content": context},
-                {"role": "user", "content": message}
-            ],
-            "temperature": 0.7
+                {"role": "user", "content": combined_content}
+            ]
         }
 
         headers = {
