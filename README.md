@@ -33,9 +33,9 @@ cd code-analyzer
 
 1. **Create a virtual environment** (recommended):
    ```bash
-   python -m venv venv
-   source venv/bin/activate  # Linux/macOS
-   venv\Scripts\activate   # Windows
+   python -m venv code-analyzer-env
+   source code-analyzer-env/bin/activate  # Linux/macOS
+   code-analyzer-env\Scripts\activate   # Windows
    ```
 2. **Install dependencies**:
    ```bash
