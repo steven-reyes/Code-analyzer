@@ -7,7 +7,9 @@ A local-hosted application designed to **analyze** public/private repositories o
 ## Features
 
 - **Comprehensive Scanning**: File structure, Docker configs, requirements, ML workflow, security, logging, etc.
-- **ChatGPT Integration**: Real-time suggestions or code edits via ChatGPT-01.
+- **ChatGPT Integration**: Real-time suggestions or code edits via ChatGPT, supporting:
+  - `o1-mini` (default)
+  - `chatgpt-01` (optional, configurable via `.env`).
 - **User-Friendly Interface**: Web UI (Flask or Node) or optional CLI.
 - **Reporting**: Generate PDF, Markdown, JSON, or Excel outputs of analysis results.
 
@@ -17,10 +19,10 @@ A local-hosted application designed to **analyze** public/private repositories o
 
 ### Prerequisites
 
-- Python 3.9+
-- Node.js 16+ (optional for front-end tasks)
-- Docker & Docker Compose (optional, for containerized deployment)
-- Git
+- **Python**: Versions 3.9, 3.10, or 3.11 supported.
+- **Node.js**: Version 16+ (optional for front-end tasks).
+- **Docker & Docker Compose**: Optional, for containerized deployment.
+- **Git**: Required for cloning the repository.
 
 ### 1. Clone the Repository
 
@@ -31,23 +33,53 @@ cd code-analyzer
 
 ### 2. Python Setup
 
+#### For Linux/macOS
+
 1. **Create a virtual environment** (recommended):
    ```bash
    python -m venv code-analyzer-env
-   source code-analyzer-env/bin/activate  # Linux/macOS
-   code-analyzer-env\Scripts\activate   # Windows
+   source code-analyzer-env/bin/activate
    ```
 2. **Install dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
-3. **Optional: Use Conda**:
+
+#### Optional: Use Conda
+
+1. **Create and activate a Conda environment**:
    ```bash
    conda env create -f environment.yml
    conda activate code-analyzer-env
    ```
+2. **Ensure dependencies are installed**:
+   ```bash
+   conda install --file requirements.txt
+   ```
 
-### 3. Node.js Setup (Optional)
+#### For Windows
+
+1. **Create a virtual environment** (recommended):
+   ```bash
+   python -m venv code-analyzer-env
+   code-analyzer-env\Scripts\activate
+   ```
+2. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+### 3. Environment Variables Setup
+
+Create a `.env` file in the project root based on `.env.example`:
+
+```plaintext
+CHATGPT_API_KEY=your_openai_api_key_here
+# Optional: Override default model ('o1-mini') by setting:
+CHATGPT_MODEL=chatgpt-01
+```
+
+### 4. Node.js Setup (Optional)
 
 1. **Install dependencies**:
    ```bash
@@ -59,7 +91,7 @@ cd code-analyzer
    npm run start  # or npm run dev
    ```
 
-### 4. Docker Setup (Optional)
+### 5. Docker Setup (Optional)
 
 1. **Build Docker image**:
    ```bash
@@ -69,7 +101,6 @@ cd code-analyzer
    ```bash
    docker-compose up --build
    ```
-   This spins up the web + DB containers (if configured in `docker-compose.yml`).
 
 ---
 
@@ -77,8 +108,16 @@ cd code-analyzer
 
 1. **Run the Application Locally**:
 
+   Ensure `.env` is properly configured with your API key:
+
+   ```plaintext
+   CHATGPT_API_KEY=your_openai_api_key_here
+   CHATGPT_MODEL=o1-mini
+   ```
+
+   Then, run the application:
    ```bash
-   python src/main.py
+   python -m src.main
    ```
 
    Visit `http://localhost:5000` in your browser or use the CLI.
@@ -86,14 +125,30 @@ cd code-analyzer
 2. **Analyze a Local Project**:
 
    ```bash
-   python src/main.py --project-path /path/to/project
+   python -m src.main --project-path /path/to/project
    ```
 
 3. **Analyze a GitHub Repo**:
 
    ```bash
-   python src/main.py --github-url https://github.com/username/repo
+   python -m src.main --github-url https://github.com/username/repo
    ```
+
+---
+
+## Environment Variables
+
+To configure the application, set the following environment variables in your `.env` file:
+
+```plaintext
+CHATGPT_API_KEY=your_openai_api_key_here  # Required
+CHATGPT_MODEL=o1-mini                    # Optional, defaults to 'o1-mini'
+```
+
+- `CHATGPT_API_KEY`: Your OpenAI API key.
+- `CHATGPT_MODEL` (optional): Overrides the default model. Options:
+  - `o1-mini` (default)
+  - `chatgpt-01` (for advanced use cases).
 
 ---
 
@@ -251,7 +306,7 @@ This project is licensed under the MIT License. See the [`LICENSE`](LICENSE) fil
 
 ## Contact
 
-- **Maintainer**: Your Name ([you@example.com](mailto\:you@example.com))
+- **Maintainer**: Your Name ([you@example.com](mailto:you@example.com))
 - **Security Issues**: Refer to [`SECURITY.md`](SECURITY.md)
 
 Happy analyzing! If you have any questions, consult the [`USER_MANUAL.md`](USER_MANUAL.md) or open an issue on GitHub.
